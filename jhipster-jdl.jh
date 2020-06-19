@@ -38,9 +38,9 @@ entity Spec {
 //}
 
 relationship ManyToOne {
-	Attr{attrValueId} to AttrValue
+	Attr{attrValue} to AttrValue
 }
 
 relationship ManyToOne {
-	Spec{attrId} to Attr
+	Spec{attr} to Attr
 }

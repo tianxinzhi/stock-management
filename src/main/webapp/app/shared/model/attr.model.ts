@@ -4,9 +4,9 @@ export interface IAttr {
   id?: number;
   attrName?: string;
   attrDesc?: string;
-  attrValueId?: IAttrValue;
+  attrValue?: IAttrValue;
 }
 
 export class Attr implements IAttr {
-  constructor(public id?: number, public attrName?: string, public attrDesc?: string, public attrValueId?: IAttrValue) {}
+  constructor(public id?: number, public attrName?: string, public attrDesc?: string, public attrValue?: IAttrValue) {}
 }

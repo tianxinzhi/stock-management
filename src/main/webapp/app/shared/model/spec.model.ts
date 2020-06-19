@@ -5,9 +5,9 @@ export interface ISpec {
   specName?: string;
   specDesc?: string;
   verId?: string;
-  attrId?: IAttr;
+  attr?: IAttr;
 }
 
 export class Spec implements ISpec {
-  constructor(public id?: number, public specName?: string, public specDesc?: string, public verId?: string, public attrId?: IAttr) {}
+  constructor(public id?: number, public specName?: string, public specDesc?: string, public verId?: string, public attr?: IAttr) {}
 }

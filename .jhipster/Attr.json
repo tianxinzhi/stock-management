@@ -15,7 +15,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "attrValue",
             "otherEntityRelationshipName": "attr",
-            "relationshipName": "attrValueId",
+            "relationshipName": "attrValue",
             "otherEntityField": "id"
         }
     ],

@@ -7,7 +7,7 @@
         Added the constraints for entity Attr.
     -->
     <changeSet id="20200619071300-2" author="jhipster">
-
+        
         <addForeignKeyConstraint baseColumnNames="attr_value_id"
                                  baseTableName="attr"
                                  constraintName="fk_attr_attr_value_id"

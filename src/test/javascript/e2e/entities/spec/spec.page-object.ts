@@ -33,7 +33,7 @@ export class SpecUpdatePage {
   specDescInput = element(by.id('field_specDesc'));
   verIdInput = element(by.id('field_verId'));
 
-  attrIdSelect = element(by.id('field_attrId'));
+  attrSelect = element(by.id('field_attr'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -63,23 +63,23 @@ export class SpecUpdatePage {
     return await this.verIdInput.getAttribute('value');
   }
 
-  async attrIdSelectLastOption(): Promise<void> {
-    await this.attrIdSelect
+  async attrSelectLastOption(): Promise<void> {
+    await this.attrSelect
       .all(by.tagName('option'))
       .last()
       .click();
   }
 
-  async attrIdSelectOption(option: string): Promise<void> {
-    await this.attrIdSelect.sendKeys(option);
+  async attrSelectOption(option: string): Promise<void> {
+    await this.attrSelect.sendKeys(option);
   }
 
-  getAttrIdSelect(): ElementFinder {
-    return this.attrIdSelect;
+  getAttrSelect(): ElementFinder {
+    return this.attrSelect;
   }
 
-  async getAttrIdSelectedOption(): Promise<string> {
-    return await this.attrIdSelect.element(by.css('option:checked')).getText();
+  async getAttrSelectedOption(): Promise<string> {
+    return await this.attrSelect.element(by.css('option:checked')).getText();
   }
 
   async save(): Promise<void> {

@@ -26,7 +26,7 @@
                     <th scope="col" ><span jhiTranslate="stockManagementApp.spec.specName">Spec Name</span></th>
                     <th scope="col" ><span jhiTranslate="stockManagementApp.spec.specDesc">Spec Desc</span></th>
                     <th scope="col" ><span jhiTranslate="stockManagementApp.spec.verId">Ver Id</span></th>
-                    <th scope="col" ><span jhiTranslate="stockManagementApp.spec.attrId">Attr Id</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.spec.attr">Attr</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -37,8 +37,8 @@
                     <td>{{ spec.specDesc }}</td>
                     <td>{{ spec.verId }}</td>
                     <td>
-                        <div *ngIf="spec.attrId">
-                            <a [routerLink]="['/attr', spec.attrId?.id, 'view']" >{{ spec.attrId?.id }}</a>
+                        <div *ngIf="spec.attr">
+                            <a [routerLink]="['/attr', spec.attr?.id, 'view']" >{{ spec.attr?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">

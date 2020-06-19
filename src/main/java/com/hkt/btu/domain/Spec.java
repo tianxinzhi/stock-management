@@ -34,7 +34,7 @@ public class Spec implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("specs")
-    private Attr attrId;
+    private Attr attr;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -84,17 +84,17 @@ public class Spec implements Serializable {
         this.verId = verId;
     }
 
-    public Attr getAttrId() {
-        return attrId;
+    public Attr getAttr() {
+        return attr;
     }
 
-    public Spec attrId(Attr attr) {
-        this.attrId = attr;
+    public Spec attr(Attr attr) {
+        this.attr = attr;
         return this;
     }
 
-    public void setAttrId(Attr attr) {
-        this.attrId = attr;
+    public void setAttr(Attr attr) {
+        this.attr = attr;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

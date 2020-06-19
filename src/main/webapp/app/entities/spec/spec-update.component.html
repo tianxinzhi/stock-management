@@ -30,10 +30,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="stockManagementApp.spec.attrId" for="field_attrId">Attr Id</label>
-                    <select class="form-control" id="field_attrId" name="attrId" formControlName="attrId">
+                    <label class="form-control-label" jhiTranslate="stockManagementApp.spec.attr" for="field_attr">Attr</label>
+                    <select class="form-control" id="field_attr" name="attr" formControlName="attr">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="attrOption.id === editForm.get('attrId')!.value?.id ? editForm.get('attrId')!.value : attrOption" *ngFor="let attrOption of attrs; trackBy: trackById">{{ attrOption.id }}</option>
+                        <option [ngValue]="attrOption.id === editForm.get('attr')!.value?.id ? editForm.get('attr')!.value : attrOption" *ngFor="let attrOption of attrs; trackBy: trackById">{{ attrOption.id }}</option>
                     </select>
                 </div>
             </div>

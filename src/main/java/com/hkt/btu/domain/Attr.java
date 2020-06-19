@@ -31,7 +31,7 @@ public class Attr implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("attrs")
-    private AttrValue attrValueId;
+    private AttrValue attrValue;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -68,17 +68,17 @@ public class Attr implements Serializable {
         this.attrDesc = attrDesc;
     }
 
-    public AttrValue getAttrValueId() {
-        return attrValueId;
+    public AttrValue getAttrValue() {
+        return attrValue;
     }
 
-    public Attr attrValueId(AttrValue attrValue) {
-        this.attrValueId = attrValue;
+    public Attr attrValue(AttrValue attrValue) {
+        this.attrValue = attrValue;
         return this;
     }
 
-    public void setAttrValueId(AttrValue attrValue) {
-        this.attrValueId = attrValue;
+    public void setAttrValue(AttrValue attrValue) {
+        this.attrValue = attrValue;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

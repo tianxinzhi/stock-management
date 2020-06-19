@@ -19,7 +19,7 @@
       "specName": "Spec Name",
       "specDesc": "Spec Desc",
       "verId": "Ver Id",
-      "attrId": "Attr Id"
+      "attr": "Attr"
     }
   }
 }

@@ -43,7 +43,7 @@ describe('Attr e2e test', () => {
     await promise.all([
       attrUpdatePage.setAttrNameInput('attrName'),
       attrUpdatePage.setAttrDescInput('attrDesc'),
-      attrUpdatePage.attrValueIdSelectLastOption()
+      attrUpdatePage.attrValueSelectLastOption()
     ]);
 
     expect(await attrUpdatePage.getAttrNameInput()).to.eq('attrName', 'Expected AttrName value to be equals to attrName');

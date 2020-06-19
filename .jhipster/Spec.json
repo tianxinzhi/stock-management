@@ -19,7 +19,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "attr",
             "otherEntityRelationshipName": "spec",
-            "relationshipName": "attrId",
+            "relationshipName": "attr",
             "otherEntityField": "id"
         }
     ],

@@ -23,7 +23,7 @@ export class SpecUpdateComponent implements OnInit {
     specName: [],
     specDesc: [],
     verId: [],
-    attrId: []
+    attr: []
   });
 
   constructor(
@@ -47,7 +47,7 @@ export class SpecUpdateComponent implements OnInit {
       specName: spec.specName,
       specDesc: spec.specDesc,
       verId: spec.verId,
-      attrId: spec.attrId
+      attr: spec.attr
     });
   }
 
@@ -72,7 +72,7 @@ export class SpecUpdateComponent implements OnInit {
       specName: this.editForm.get(['specName'])!.value,
       specDesc: this.editForm.get(['specDesc'])!.value,
       verId: this.editForm.get(['verId'])!.value,
-      attrId: this.editForm.get(['attrId'])!.value
+      attr: this.editForm.get(['attr'])!.value
     };
   }
 

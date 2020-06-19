@@ -44,7 +44,7 @@ describe('Spec e2e test', () => {
       specUpdatePage.setSpecNameInput('specName'),
       specUpdatePage.setSpecDescInput('specDesc'),
       specUpdatePage.setVerIdInput('verId'),
-      specUpdatePage.attrIdSelectLastOption()
+      specUpdatePage.attrSelectLastOption()
     ]);
 
     expect(await specUpdatePage.getSpecNameInput()).to.eq('specName', 'Expected SpecName value to be equals to specName');

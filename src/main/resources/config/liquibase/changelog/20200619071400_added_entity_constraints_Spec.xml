@@ -7,7 +7,7 @@
         Added the constraints for entity Spec.
     -->
     <changeSet id="20200619071400-2" author="jhipster">
-
+        
         <addForeignKeyConstraint baseColumnNames="attr_id"
                                  baseTableName="spec"
                                  constraintName="fk_spec_attr_id"

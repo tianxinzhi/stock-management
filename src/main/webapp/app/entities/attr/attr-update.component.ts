@@ -22,7 +22,7 @@ export class AttrUpdateComponent implements OnInit {
     id: [],
     attrName: [],
     attrDesc: [],
-    attrValueId: []
+    attrValue: []
   });
 
   constructor(
@@ -45,7 +45,7 @@ export class AttrUpdateComponent implements OnInit {
       id: attr.id,
       attrName: attr.attrName,
       attrDesc: attr.attrDesc,
-      attrValueId: attr.attrValueId
+      attrValue: attr.attrValue
     });
   }
 
@@ -69,7 +69,7 @@ export class AttrUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       attrName: this.editForm.get(['attrName'])!.value,
       attrDesc: this.editForm.get(['attrDesc'])!.value,
-      attrValueId: this.editForm.get(['attrValueId'])!.value
+      attrValue: this.editForm.get(['attrValue'])!.value
     };
   }
 

@@ -1,0 +1,37 @@
+{
+    "name": "Spec",
+    "fields": [
+        {
+            "fieldName": "specName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "specDesc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "verId",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "attr",
+            "otherEntityRelationshipName": "spec",
+            "relationshipName": "attrId",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200619071400",
+    "entityTableName": "spec",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

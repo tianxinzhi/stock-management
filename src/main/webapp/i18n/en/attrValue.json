@@ -1,0 +1,25 @@
+{
+  "stockManagementApp": {
+    "attrValue": {
+      "home": {
+        "title": "Attr Values",
+        "createLabel": "Create a new Attr Value",
+        "createOrEditLabel": "Create or edit a Attr Value",
+        "notFound": "No Attr Values found"
+      },
+      "created": "A new Attr Value is created with identifier {{ param }}",
+      "updated": "A Attr Value is updated with identifier {{ param }}",
+      "deleted": "A Attr Value is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Attr Value {{ id }}?"
+      },
+      "detail": {
+        "title": "Attr Value"
+      },
+      "attrValue": "Attr Value",
+      "unitOfMeasure": "Unit Of Measure",
+      "valueFrom": "Value From",
+      "valueTo": "Value To"
+    }
+  }
+}

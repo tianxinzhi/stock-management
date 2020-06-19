@@ -1,0 +1,46 @@
+entity AttrValue {
+    attrValue String
+    unitOfMeasure String
+    valueFrom String
+    valueTo String
+}
+
+
+
+entity Attr {
+	attrName String
+    attrDesc String
+    //attrValueId Long
+}
+
+entity Spec {
+	specName String
+    specDesc String
+    verId String
+    //attrId Long
+}
+
+// an ignored comment
+/** not an ignored comment */
+//entity SkuTypeSpec {
+//	specId Long,
+//	typeId Long,
+//	skuCode String,
+//	skuName String,
+//	skuDesc String
+//   typeCode String
+//    typeName String
+//    typeDesc String
+//}
+
+//relationship OneToMany {
+//	Attr{attrName} to Attr{attrValue}
+//}
+
+relationship ManyToOne {
+	Attr{attrValueId} to AttrValue
+}
+
+relationship ManyToOne {
+	Spec{attrId} to Attr
+}

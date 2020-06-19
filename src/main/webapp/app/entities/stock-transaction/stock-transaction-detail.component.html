@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="stockTransaction">
+            <h2><span jhiTranslate="stockManagementApp.stockTransaction.detail.title">Stock Transaction</span> {{ stockTransaction.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="stockManagementApp.stockTransaction.subinventoryFrom">Subinventory From</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'stockManagementApp.Subinventory.' + stockTransaction.subinventoryFrom }}">{{ stockTransaction.subinventoryFrom }}</span>
+                </dd>
+                <dt><span jhiTranslate="stockManagementApp.stockTransaction.subinventoryTo">Subinventory To</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'stockManagementApp.Subinventory.' + stockTransaction.subinventoryTo }}">{{ stockTransaction.subinventoryTo }}</span>
+                </dd>
+                <dt><span jhiTranslate="stockManagementApp.stockTransaction.transactionType">Transaction Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'stockManagementApp.TransactionType.' + stockTransaction.transactionType }}">{{ stockTransaction.transactionType }}</span>
+                </dd>
+                <dt><span jhiTranslate="stockManagementApp.stockTransaction.transactionQuantity">Transaction Quantity</span></dt>
+                <dd>
+                    <span>{{ stockTransaction.transactionQuantity }}</span>
+                </dd>
+                <dt><span jhiTranslate="stockManagementApp.stockTransaction.reference">Reference</span></dt>
+                <dd>
+                    <span>{{ stockTransaction.reference }}</span>
+                </dd>
+                <dt><span jhiTranslate="stockManagementApp.stockTransaction.stockItem">Stock Item</span></dt>
+                <dd>
+                    <div *ngIf="stockTransaction.stockItem">
+                        <a [routerLink]="['/stock-item', stockTransaction.stockItem?.id, 'view']">{{ stockTransaction.stockItem?.itemNumber }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/stock-transaction', stockTransaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

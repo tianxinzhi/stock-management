@@ -1,0 +1,25 @@
+{
+  "stockManagementApp": {
+    "spec": {
+      "home": {
+        "title": "Specs",
+        "createLabel": "建立一筆新的 Spec",
+        "createOrEditLabel": "建立或編輯 Spec",
+        "notFound": "No Specs found"
+      },
+      "created": "新的 Spec 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Spec 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Spec 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Spec {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Spec"
+      },
+      "specName": "Spec Name",
+      "specDesc": "Spec Desc",
+      "verId": "Ver Id",
+      "attrId": "Attr Id"
+    }
+  }
+}

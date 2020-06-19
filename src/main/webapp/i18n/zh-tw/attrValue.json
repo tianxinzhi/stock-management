@@ -1,0 +1,25 @@
+{
+  "stockManagementApp": {
+    "attrValue": {
+      "home": {
+        "title": "Attr Values",
+        "createLabel": "建立一筆新的 Attr Value",
+        "createOrEditLabel": "建立或編輯 Attr Value",
+        "notFound": "No Attr Values found"
+      },
+      "created": "新的 Attr Value 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Attr Value 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Attr Value 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Attr Value {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Attr Value"
+      },
+      "attrValue": "Attr Value",
+      "unitOfMeasure": "Unit Of Measure",
+      "valueFrom": "Value From",
+      "valueTo": "Value To"
+    }
+  }
+}

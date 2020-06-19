@@ -1,0 +1,23 @@
+{
+  "stockManagementApp": {
+    "stockItem": {
+      "home": {
+        "title": "Stock Items",
+        "createLabel": "创建新 Stock Item",
+        "createOrEditLabel": "创建或编辑 Stock Item",
+        "notFound": "No Stock Items found"
+      },
+      "created": "Stock Item {{ param }} 创建成功",
+      "updated": "Stock Item {{ param }} 更新成功",
+      "deleted": "Stock Item {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Stock Item {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Stock Item"
+      },
+      "itemNumber": "Item Number",
+      "itemDescription": "Item Description"
+    }
+  }
+}

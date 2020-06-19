@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="attrValue">
+            <h2><span jhiTranslate="stockManagementApp.attrValue.detail.title">Attr Value</span> {{ attrValue.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="stockManagementApp.attrValue.attrValue">Attr Value</span></dt>
+                <dd>
+                    <span>{{ attrValue.attrValue }}</span>
+                </dd>
+                <dt><span jhiTranslate="stockManagementApp.attrValue.unitOfMeasure">Unit Of Measure</span></dt>
+                <dd>
+                    <span>{{ attrValue.unitOfMeasure }}</span>
+                </dd>
+                <dt><span jhiTranslate="stockManagementApp.attrValue.valueFrom">Value From</span></dt>
+                <dd>
+                    <span>{{ attrValue.valueFrom }}</span>
+                </dd>
+                <dt><span jhiTranslate="stockManagementApp.attrValue.valueTo">Value To</span></dt>
+                <dd>
+                    <span>{{ attrValue.valueTo }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/attr-value', attrValue.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

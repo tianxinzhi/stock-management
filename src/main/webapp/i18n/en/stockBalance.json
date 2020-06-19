@@ -1,0 +1,25 @@
+{
+  "stockManagementApp": {
+    "stockBalance": {
+      "home": {
+        "title": "Stock Balances",
+        "createLabel": "Create a new Stock Balance",
+        "createOrEditLabel": "Create or edit a Stock Balance",
+        "notFound": "No Stock Balances found"
+      },
+      "created": "A new Stock Balance is created with identifier {{ param }}",
+      "updated": "A Stock Balance is updated with identifier {{ param }}",
+      "deleted": "A Stock Balance is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Stock Balance {{ id }}?"
+      },
+      "detail": {
+        "title": "Stock Balance"
+      },
+      "subInventory": "Sub Inventory",
+      "quantityOnhand": "Quantity Onhand",
+      "quantityReserved": "Quantity Reserved",
+      "stockItem": "Stock Item"
+    }
+  }
+}

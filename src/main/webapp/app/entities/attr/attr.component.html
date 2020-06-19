@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="stockManagementApp.attr.home.title">Attrs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-attr" [routerLink]="['/attr/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="stockManagementApp.attr.home.createLabel">
+            Create a new Attr
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="attrs?.length === 0">
+        <span jhiTranslate="stockManagementApp.attr.home.notFound">No attrs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="attrs?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.attr.attrName">Attr Name</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.attr.attrDesc">Attr Desc</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.attr.attrValueId">Attr Value Id</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let attr of attrs ;trackBy: trackId">
+                    <td><a [routerLink]="['/attr', attr.id, 'view']">{{ attr.id }}</a></td>
+                    <td>{{ attr.attrName }}</td>
+                    <td>{{ attr.attrDesc }}</td>
+                    <td>
+                        <div *ngIf="attr.attrValueId">
+                            <a [routerLink]="['/attr-value', attr.attrValueId?.id, 'view']" >{{ attr.attrValueId?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/attr', attr.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/attr', attr.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(attr)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

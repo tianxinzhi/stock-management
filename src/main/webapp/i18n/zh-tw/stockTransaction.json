@@ -1,0 +1,27 @@
+{
+  "stockManagementApp": {
+    "stockTransaction": {
+      "home": {
+        "title": "Stock Transactions",
+        "createLabel": "建立一筆新的 Stock Transaction",
+        "createOrEditLabel": "建立或編輯 Stock Transaction",
+        "notFound": "No Stock Transactions found"
+      },
+      "created": "新的 Stock Transaction 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Stock Transaction 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Stock Transaction 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Stock Transaction {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Stock Transaction"
+      },
+      "subinventoryFrom": "Subinventory From",
+      "subinventoryTo": "Subinventory To",
+      "transactionType": "Transaction Type",
+      "transactionQuantity": "Transaction Quantity",
+      "reference": "Reference",
+      "stockItem": "Stock Item"
+    }
+  }
+}

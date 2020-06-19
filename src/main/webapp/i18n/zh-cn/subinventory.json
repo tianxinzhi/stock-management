@@ -1,0 +1,11 @@
+{
+  "stockManagementApp": {
+    "Subinventory": {
+      "null": "",
+      "FG": "FG",
+      "STAGING": "STAGING",
+      "FAULTY": "FAULTY",
+      "IN_TRANSIT": "IN_TRANSIT"
+    }
+  }
+}

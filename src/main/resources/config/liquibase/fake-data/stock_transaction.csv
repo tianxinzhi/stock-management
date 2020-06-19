@@ -1,0 +1,11 @@
+id;subinventory_from;subinventory_to;transaction_type;transaction_quantity;reference;stock_item_id
+1;IN_TRANSIT;STAGING;TRANSFER;99246;Manager Movies;1
+2;FAULTY;FG;TRANSFER;18341;Lead National;2
+3;FG;STAGING;IN;30354;Berkshire generating;3
+4;IN_TRANSIT;FG;OUT;271;navigating Nuevo Sol;4
+5;IN_TRANSIT;FAULTY;IN;29241;Administrator Invest;5
+6;FG;FG;TRANSFER;55788;Customer deposit ben;6
+7;STAGING;STAGING;OUT;32943;interface Agent Nati;7
+8;FG;STAGING;TRANSFER;84201;Extended Pike Cote d;8
+9;STAGING;STAGING;OUT;35911;pixel;9
+10;FG;STAGING;OUT;31225;Kuwait;10

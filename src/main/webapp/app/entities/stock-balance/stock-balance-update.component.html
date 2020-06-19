@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-stock-balance-heading" jhiTranslate="stockManagementApp.stockBalance.home.createOrEditLabel">Create or edit a Stock Balance</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="stockManagementApp.stockBalance.stockItem" for="field_stockItem">Stock Item</label>
+                    <select class="form-control" id="field_stockItem" name="stockItem" formControlName="stockItem">
+                        <option *ngIf="!editForm.get('stockItem')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="stockItemOption.id === editForm.get('stockItem')!.value?.id ? editForm.get('stockItem')!.value : stockItemOption" *ngFor="let stockItemOption of stockitems; trackBy: trackById">{{ stockItemOption.itemNumber }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('stockItem')!.invalid && (editForm.get('stockItem')!.dirty || editForm.get('stockItem')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('stockItem')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="stockManagementApp.stockBalance.subInventory" for="field_subInventory">Sub Inventory</label>
+                    <select class="form-control" name="subInventory" formControlName="subInventory" id="field_subInventory">
+                        <option value="FG">{{ 'stockManagementApp.Subinventory.FG' | translate }}</option>
+                        <option value="STAGING">{{ 'stockManagementApp.Subinventory.STAGING' | translate }}</option>
+                        <option value="FAULTY">{{ 'stockManagementApp.Subinventory.FAULTY' | translate }}</option>
+                        <option value="IN_TRANSIT">{{ 'stockManagementApp.Subinventory.IN_TRANSIT' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('subInventory')!.invalid && (editForm.get('subInventory')!.dirty || editForm.get('subInventory')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('subInventory')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="stockManagementApp.stockBalance.quantityOnhand" for="field_quantityOnhand">Quantity Onhand</label>
+                    <input type="number" class="form-control" name="quantityOnhand" id="field_quantityOnhand"
+                           formControlName="quantityOnhand"/>
+                    <div *ngIf="editForm.get('quantityOnhand')!.invalid && (editForm.get('quantityOnhand')!.dirty || editForm.get('quantityOnhand')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quantityOnhand')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('quantityOnhand')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="stockManagementApp.stockBalance.quantityReserved" for="field_quantityReserved">Quantity Reserved</label>
+                    <input type="number" class="form-control" name="quantityReserved" id="field_quantityReserved"
+                           formControlName="quantityReserved"/>
+                    <div *ngIf="editForm.get('quantityReserved')!.invalid && (editForm.get('quantityReserved')!.dirty || editForm.get('quantityReserved')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quantityReserved')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('quantityReserved')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

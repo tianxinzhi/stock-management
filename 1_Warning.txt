@@ -1,0 +1,13 @@
+
+BLOCKED FILE ALERT
+
+A file has been blocked due to the 'File Filtering: pif/vbs/scr/exe/js/wsf/docm' rule.
+Context: 'postcss.config.js'
+Disallowed due to filename
+Ticket Number: '1038-5eda-1714-0004'
+
+
+For further information, contact your system administrator. 
+Copyright 1999-2014 McAfee, Inc.
+All Rights Reserved.
+http://www.mcafee.com

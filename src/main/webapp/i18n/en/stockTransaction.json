@@ -1,0 +1,27 @@
+{
+  "stockManagementApp": {
+    "stockTransaction": {
+      "home": {
+        "title": "Stock Transactions",
+        "createLabel": "Create a new Stock Transaction",
+        "createOrEditLabel": "Create or edit a Stock Transaction",
+        "notFound": "No Stock Transactions found"
+      },
+      "created": "A new Stock Transaction is created with identifier {{ param }}",
+      "updated": "A Stock Transaction is updated with identifier {{ param }}",
+      "deleted": "A Stock Transaction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Stock Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Stock Transaction"
+      },
+      "subinventoryFrom": "Subinventory From",
+      "subinventoryTo": "Subinventory To",
+      "transactionType": "Transaction Type",
+      "transactionQuantity": "Transaction Quantity",
+      "reference": "Reference",
+      "stockItem": "Stock Item"
+    }
+  }
+}

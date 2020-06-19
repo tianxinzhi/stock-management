@@ -1,0 +1,25 @@
+{
+  "stockManagementApp": {
+    "stockBalance": {
+      "home": {
+        "title": "Stock Balances",
+        "createLabel": "建立一筆新的 Stock Balance",
+        "createOrEditLabel": "建立或編輯 Stock Balance",
+        "notFound": "No Stock Balances found"
+      },
+      "created": "新的 Stock Balance 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Stock Balance 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Stock Balance 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Stock Balance {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Stock Balance"
+      },
+      "subInventory": "Sub Inventory",
+      "quantityOnhand": "Quantity Onhand",
+      "quantityReserved": "Quantity Reserved",
+      "stockItem": "Stock Item"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "name": "Attr",
+    "fields": [
+        {
+            "fieldName": "attrName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attrDesc",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "attrValue",
+            "otherEntityRelationshipName": "attr",
+            "relationshipName": "attrValueId",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200619071300",
+    "entityTableName": "attr",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

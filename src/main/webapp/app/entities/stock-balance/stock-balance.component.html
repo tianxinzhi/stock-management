@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="stockManagementApp.stockBalance.home.title">Stock Balances</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-stock-balance" [routerLink]="['/stock-balance/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="stockManagementApp.stockBalance.home.createLabel">
+            Create a new Stock Balance
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="stockBalances?.length === 0">
+        <span jhiTranslate="stockManagementApp.stockBalance.home.notFound">No stockBalances found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="stockBalances?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="stockItem.itemNumber"><span jhiTranslate="stockManagementApp.stockBalance.stockItem">Stock Item</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="subInventory"><span jhiTranslate="stockManagementApp.stockBalance.subInventory">Sub Inventory</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="quantityOnhand"><span jhiTranslate="stockManagementApp.stockBalance.quantityOnhand">Quantity Onhand</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="quantityReserved"><span jhiTranslate="stockManagementApp.stockBalance.quantityReserved">Quantity Reserved</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stockBalance of stockBalances ;trackBy: trackId">
+                    <td><a [routerLink]="['/stock-balance', stockBalance.id, 'view']">{{ stockBalance.id }}</a></td>
+                    <td>
+                        <div *ngIf="stockBalance.stockItem">
+                            <a [routerLink]="['/stock-item', stockBalance.stockItem?.id, 'view']" >{{ stockBalance.stockItem?.itemNumber }}</a>
+                        </div>
+                    </td>                    
+                    <td jhiTranslate="{{ 'stockManagementApp.Subinventory.' + stockBalance.subInventory }}">{{ stockBalance.subInventory }}</td>
+                    <td>{{ stockBalance.quantityOnhand }}</td>
+                    <td>{{ stockBalance.quantityReserved }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <!--
+                            <button type="submit"
+                                    [routerLink]="['/stock-balance', stockBalance.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+                            
+                            <button type="submit"
+                                    [routerLink]="['/stock-balance', stockBalance.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(stockBalance)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                            -->
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="stockBalances?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

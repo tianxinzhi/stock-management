@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="stockManagementApp.stockTransaction.home.title">Stock Transactions</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-stock-transaction" [routerLink]="['/stock-transaction/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="stockManagementApp.stockTransaction.home.createLabel">
+            Create a new Stock Transaction
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="stockTransactions?.length === 0">
+        <span jhiTranslate="stockManagementApp.stockTransaction.home.notFound">No stockTransactions found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="stockTransactions?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="stockItem.itemNumber"><span jhiTranslate="stockManagementApp.stockTransaction.stockItem">Stock Item</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="subinventoryFrom"><span jhiTranslate="stockManagementApp.stockTransaction.subinventoryFrom">Subinventory From</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="subinventoryTo"><span jhiTranslate="stockManagementApp.stockTransaction.subinventoryTo">Subinventory To</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="transactionType"><span jhiTranslate="stockManagementApp.stockTransaction.transactionType">Transaction Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="transactionQuantity"><span jhiTranslate="stockManagementApp.stockTransaction.transactionQuantity">Transaction Quantity</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="reference"><span jhiTranslate="stockManagementApp.stockTransaction.reference">Reference</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stockTransaction of stockTransactions ;trackBy: trackId">
+                    <td><a [routerLink]="['/stock-transaction', stockTransaction.id, 'view']">{{ stockTransaction.id }}</a></td>
+                    <td>
+                        <div *ngIf="stockTransaction.stockItem">
+                            <a [routerLink]="['/stock-item', stockTransaction.stockItem?.id, 'view']" >{{ stockTransaction.stockItem?.itemNumber }}</a>
+                        </div>
+                    </td>
+                    <td jhiTranslate="{{ 'stockManagementApp.Subinventory.' + stockTransaction.subinventoryFrom }}">{{ stockTransaction.subinventoryFrom }}</td>
+                    <td jhiTranslate="{{ 'stockManagementApp.Subinventory.' + stockTransaction.subinventoryTo }}">{{ stockTransaction.subinventoryTo }}</td>
+                    <td jhiTranslate="{{ 'stockManagementApp.TransactionType.' + stockTransaction.transactionType }}">{{ stockTransaction.transactionType }}</td>
+                    <td>{{ stockTransaction.transactionQuantity }}</td>
+                    <td>{{ stockTransaction.reference }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                        <!--
+                            <button type="submit"
+                                    [routerLink]="['/stock-transaction', stockTransaction.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+                            <button type="submit"
+                                    [routerLink]="['/stock-transaction', stockTransaction.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(stockTransaction)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                            -->
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="stockTransactions?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

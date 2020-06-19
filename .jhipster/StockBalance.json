@@ -1,0 +1,48 @@
+{
+    "name": "StockBalance",
+    "fields": [
+        {
+            "fieldName": "subInventory",
+            "fieldType": "Subinventory",
+            "fieldValues": "FG,STAGING,FAULTY,IN_TRANSIT",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantityOnhand",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantityReserved",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "stockItem",
+            "otherEntityRelationshipName": "stockBalance",
+            "relationshipValidateRules": "required",
+            "relationshipName": "stockItem",
+            "otherEntityField": "itemNumber"
+        }
+    ],
+    "changelogDate": "20200513035700",
+    "entityTableName": "stock_balance",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,35 @@
+{
+    "name": "StockItem",
+    "fields": [
+        {
+            "fieldName": "itemNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": "20"
+        },
+        {
+            "fieldName": "itemDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200513035600",
+    "entityTableName": "stock_item",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

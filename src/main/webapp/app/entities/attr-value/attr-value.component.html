@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="stockManagementApp.attrValue.home.title">Attr Values</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-attr-value" [routerLink]="['/attr-value/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="stockManagementApp.attrValue.home.createLabel">
+            Create a new Attr Value
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="attrValues?.length === 0">
+        <span jhiTranslate="stockManagementApp.attrValue.home.notFound">No attrValues found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="attrValues?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.attrValue.attrValue">Attr Value</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.attrValue.unitOfMeasure">Unit Of Measure</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.attrValue.valueFrom">Value From</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.attrValue.valueTo">Value To</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let attrValue of attrValues ;trackBy: trackId">
+                    <td><a [routerLink]="['/attr-value', attrValue.id, 'view']">{{ attrValue.id }}</a></td>
+                    <td>{{ attrValue.attrValue }}</td>
+                    <td>{{ attrValue.unitOfMeasure }}</td>
+                    <td>{{ attrValue.valueFrom }}</td>
+                    <td>{{ attrValue.valueTo }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/attr-value', attrValue.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/attr-value', attrValue.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(attrValue)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

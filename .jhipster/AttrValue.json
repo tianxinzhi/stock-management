@@ -1,0 +1,33 @@
+{
+    "name": "AttrValue",
+    "fields": [
+        {
+            "fieldName": "attrValue",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "unitOfMeasure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valueFrom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valueTo",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200619071200",
+    "entityTableName": "attr_value",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

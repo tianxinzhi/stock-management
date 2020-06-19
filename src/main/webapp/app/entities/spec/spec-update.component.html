@@ -33,7 +33,7 @@
                     <label class="form-control-label" jhiTranslate="stockManagementApp.spec.attr" for="field_attr">Attr</label>
                     <select class="form-control" id="field_attr" name="attr" formControlName="attr">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="attrOption.id === editForm.get('attr')!.value?.id ? editForm.get('attr')!.value : attrOption" *ngFor="let attrOption of attrs; trackBy: trackById">{{ attrOption.id }}</option>
+                        <option [ngValue]="attrOption.id === editForm.get('attr')!.value?.id ? editForm.get('attr')!.value : attrOption" *ngFor="let attrOption of attrs; trackBy: trackById">{{ attrOption.attrName }}</option>
                     </select>
                 </div>
             </div>

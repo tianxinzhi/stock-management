@@ -38,7 +38,7 @@
                     <td>{{ spec.verId }}</td>
                     <td>
                         <div *ngIf="spec.attr">
-                            <a [routerLink]="['/attr', spec.attr?.id, 'view']" >{{ spec.attr?.id }}</a>
+                            <a [routerLink]="['/attr', spec.attr?.attrName, 'view']" >{{ spec.attr?.attrName }}</a>
                         </div>
                     </td>
                     <td class="text-right">

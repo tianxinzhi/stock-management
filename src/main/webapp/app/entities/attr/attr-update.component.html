@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="stockManagementApp.attr.attrValue" for="field_attrValue">Attr Value</label>
-                    <select class="form-control" id="field_attrValue" name="attrValue" formControlName="attrValue">
+                    <select multiple class="form-control" id="field_attrValue" name="attrValue" formControlName="attrValue">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="attrValueOption.id === editForm.get('attrValue')!.value?.id ? editForm.get('attrValue')!.value : attrValueOption" *ngFor="let attrValueOption of attrvalues; trackBy: trackById">{{ attrValueOption.attrValue }}</option>
                     </select>

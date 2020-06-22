@@ -18,7 +18,8 @@
       },
       "attrName": "Attr Name",
       "attrDesc": "Attr Desc",
-      "attrValue": "Attr Value"
+      "attrValues": "Attr Values",
+      "specs": "Specs"
     }
   }
 }

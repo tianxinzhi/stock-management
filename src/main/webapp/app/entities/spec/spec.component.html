@@ -26,7 +26,7 @@
                     <th scope="col" ><span jhiTranslate="stockManagementApp.spec.specName">Spec Name</span></th>
                     <th scope="col" ><span jhiTranslate="stockManagementApp.spec.specDesc">Spec Desc</span></th>
                     <th scope="col" ><span jhiTranslate="stockManagementApp.spec.verId">Ver Id</span></th>
-                    <th scope="col" ><span jhiTranslate="stockManagementApp.spec.attr">Attr</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.spec.attrs">Attrs</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -37,9 +37,9 @@
                     <td>{{ spec.specDesc }}</td>
                     <td>{{ spec.verId }}</td>
                     <td>
-                        <div *ngIf="spec.attr">
-                            <a [routerLink]="['/attr', spec.attr?.attrName, 'view']" >{{ spec.attr?.attrName }}</a>
-                        </div>
+                        <span *ngFor="let attrs of spec.attrs; let last = last">
+                            <a class="form-control-static" [routerLink]="['/attr', attrs?.id, 'view']">{{ attrs.attrName }}</a>{{ last ? '' : ', ' }}
+                        </span>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

@@ -19,7 +19,8 @@
       "attrValue": "Attr Value",
       "unitOfMeasure": "Unit Of Measure",
       "valueFrom": "Value From",
-      "valueTo": "Value To"
+      "valueTo": "Value To",
+      "attrs": "Attrs"
     }
   }
 }

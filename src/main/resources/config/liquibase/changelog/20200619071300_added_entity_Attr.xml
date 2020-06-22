@@ -22,15 +22,23 @@
             <column name="attr_desc" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="attr_value_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
 
     <changeSet id="20200619071300-1-relations" author="jhipster">
 
+        <createTable tableName="attr_attr_values">
+            <column name="attr_values_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="attr_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="attr_id, attr_values_id" tableName="attr_attr_values"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 

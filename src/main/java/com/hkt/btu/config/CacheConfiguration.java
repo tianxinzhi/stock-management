@@ -48,6 +48,16 @@ public class CacheConfiguration {
             createCache(cm, com.hkt.btu.domain.AttrValue.class.getName());
             createCache(cm, com.hkt.btu.domain.Attr.class.getName());
             createCache(cm, com.hkt.btu.domain.Spec.class.getName());
+            createCache(cm, com.hkt.btu.domain.Type.class.getName());
+            createCache(cm, com.hkt.btu.domain.Type.class.getName() + ".specs");
+            createCache(cm, com.hkt.btu.domain.Type.class.getName() + ".skuses");
+            createCache(cm, com.hkt.btu.domain.Sku.class.getName());
+            createCache(cm, com.hkt.btu.domain.Sku.class.getName() + ".types");
+            createCache(cm, com.hkt.btu.domain.AttrValue.class.getName() + ".attrs");
+            createCache(cm, com.hkt.btu.domain.Attr.class.getName() + ".attrValues");
+            createCache(cm, com.hkt.btu.domain.Attr.class.getName() + ".specs");
+            createCache(cm, com.hkt.btu.domain.Spec.class.getName() + ".attrs");
+            createCache(cm, com.hkt.btu.domain.Spec.class.getName() + ".types");
             // jhipster-needle-ehcache-add-entry
         };
     }

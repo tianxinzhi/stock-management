@@ -8,11 +8,17 @@
     -->
     <changeSet id="20200619071400-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="attr_id"
-                                 baseTableName="spec"
-                                 constraintName="fk_spec_attr_id"
+        <addForeignKeyConstraint baseColumnNames="spec_id"
+                                 baseTableName="spec_attrs"
+                                 constraintName="fk_spec_attrs_spec_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="spec"/>
+
+        <addForeignKeyConstraint baseColumnNames="attrs_id"
+                                 baseTableName="spec_attrs"
+                                 constraintName="fk_spec_attrs_attrs_id"
                                  referencedColumnNames="id"
                                  referencedTableName="attr"/>
-
+        
     </changeSet>
 </databaseChangeLog>

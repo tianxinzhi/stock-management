@@ -20,10 +20,14 @@
     <include file="config/liquibase/changelog/20200619071200_added_entity_AttrValue.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200619071300_added_entity_Attr.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200619071400_added_entity_Spec.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200622101600_added_entity_Type.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200622101700_added_entity_Sku.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200513035700_added_entity_constraints_StockBalance.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200513035800_added_entity_constraints_StockTransaction.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200619071300_added_entity_constraints_Attr.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200619071400_added_entity_constraints_Spec.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200622101600_added_entity_constraints_Type.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200622101700_added_entity_constraints_Sku.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

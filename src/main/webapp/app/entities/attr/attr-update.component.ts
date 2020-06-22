@@ -22,7 +22,7 @@ export class AttrUpdateComponent implements OnInit {
     id: [],
     attrName: [],
     attrDesc: [],
-    attrValue: []
+    attrValues: []
   });
 
   constructor(
@@ -45,7 +45,7 @@ export class AttrUpdateComponent implements OnInit {
       id: attr.id,
       attrName: attr.attrName,
       attrDesc: attr.attrDesc,
-      attrValue: attr.attrValue
+      attrValues: attr.attrValues
     });
   }
 
@@ -69,7 +69,7 @@ export class AttrUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       attrName: this.editForm.get(['attrName'])!.value,
       attrDesc: this.editForm.get(['attrDesc'])!.value,
-      attrValue: this.editForm.get(['attrValue'])!.value
+      attrValues: this.editForm.get(['attrValues'])!.value
     };
   }
 
@@ -91,5 +91,16 @@ export class AttrUpdateComponent implements OnInit {
 
   trackById(index: number, item: IAttrValue): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: IAttrValue[], option: IAttrValue): IAttrValue {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

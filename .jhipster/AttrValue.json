@@ -18,12 +18,21 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "attr",
+            "otherEntityRelationshipName": "attrValues",
+            "relationshipName": "attrs",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
     "changelogDate": "20200619071200",
     "entityTableName": "attr_value",
-    "dto": "no",
+    "dto": "mapstruct",
     "pagination": "no",
-    "service": "no",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,

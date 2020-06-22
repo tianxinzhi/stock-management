@@ -12,18 +12,27 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "attrValue",
-            "otherEntityRelationshipName": "attr",
-            "relationshipName": "attrValue",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "attrs",
+            "relationshipName": "attrValues",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "spec",
+            "otherEntityRelationshipName": "attrs",
+            "relationshipName": "specs",
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
     "changelogDate": "20200619071300",
     "entityTableName": "attr",
-    "dto": "no",
+    "dto": "mapstruct",
     "pagination": "no",
-    "service": "no",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,

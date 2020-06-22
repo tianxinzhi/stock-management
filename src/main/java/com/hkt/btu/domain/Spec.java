@@ -1,6 +1,6 @@
 package com.hkt.btu.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +8,8 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Spec.
@@ -32,9 +34,17 @@ public class Spec implements Serializable {
     @Column(name = "ver_id")
     private String verId;
 
-    @ManyToOne
-    @JsonIgnoreProperties("specs")
-    private Attr attr;
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "spec_attrs",
+               joinColumns = @JoinColumn(name = "spec_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "attrs_id", referencedColumnName = "id"))
+    private Set<Attr> attrs = new HashSet<>();
+
+    @ManyToMany(mappedBy = "specs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Type> types = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -84,17 +94,54 @@ public class Spec implements Serializable {
         this.verId = verId;
     }
 
-    public Attr getAttr() {
-        return attr;
+    public Set<Attr> getAttrs() {
+        return attrs;
     }
 
-    public Spec attr(Attr attr) {
-        this.attr = attr;
+    public Spec attrs(Set<Attr> attrs) {
+        this.attrs = attrs;
         return this;
     }
 
-    public void setAttr(Attr attr) {
-        this.attr = attr;
+    public Spec addAttrs(Attr attr) {
+        this.attrs.add(attr);
+        attr.getSpecs().add(this);
+        return this;
+    }
+
+    public Spec removeAttrs(Attr attr) {
+        this.attrs.remove(attr);
+        attr.getSpecs().remove(this);
+        return this;
+    }
+
+    public void setAttrs(Set<Attr> attrs) {
+        this.attrs = attrs;
+    }
+
+    public Set<Type> getTypes() {
+        return types;
+    }
+
+    public Spec types(Set<Type> types) {
+        this.types = types;
+        return this;
+    }
+
+    public Spec addTypes(Type type) {
+        this.types.add(type);
+        type.getSpecs().add(this);
+        return this;
+    }
+
+    public Spec removeTypes(Type type) {
+        this.types.remove(type);
+        type.getSpecs().remove(this);
+        return this;
+    }
+
+    public void setTypes(Set<Type> types) {
+        this.types = types;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

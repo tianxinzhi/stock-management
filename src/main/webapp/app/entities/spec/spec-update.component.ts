@@ -23,7 +23,7 @@ export class SpecUpdateComponent implements OnInit {
     specName: [],
     specDesc: [],
     verId: [],
-    attr: []
+    attrs: []
   });
 
   constructor(
@@ -47,7 +47,7 @@ export class SpecUpdateComponent implements OnInit {
       specName: spec.specName,
       specDesc: spec.specDesc,
       verId: spec.verId,
-      attr: spec.attr
+      attrs: spec.attrs
     });
   }
 
@@ -72,7 +72,7 @@ export class SpecUpdateComponent implements OnInit {
       specName: this.editForm.get(['specName'])!.value,
       specDesc: this.editForm.get(['specDesc'])!.value,
       verId: this.editForm.get(['verId'])!.value,
-      attr: this.editForm.get(['attr'])!.value
+      attrs: this.editForm.get(['attrs'])!.value
     };
   }
 
@@ -94,5 +94,16 @@ export class SpecUpdateComponent implements OnInit {
 
   trackById(index: number, item: IAttr): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: IAttr[], option: IAttr): IAttr {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

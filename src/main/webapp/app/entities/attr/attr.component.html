@@ -25,7 +25,7 @@
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="stockManagementApp.attr.attrName">Attr Name</span></th>
                     <th scope="col" ><span jhiTranslate="stockManagementApp.attr.attrDesc">Attr Desc</span></th>
-                    <th scope="col" ><span jhiTranslate="stockManagementApp.attr.attrValue">Attr Value</span></th>
+                    <th scope="col" ><span jhiTranslate="stockManagementApp.attr.attrValues">Attr Values</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -35,9 +35,9 @@
                     <td>{{ attr.attrName }}</td>
                     <td>{{ attr.attrDesc }}</td>
                     <td>
-                        <div *ngIf="attr.attrValue">
-                            <a [routerLink]="['/attr-value', attr.attrValue?.attrValue, 'view']" >{{ attr.attrValue?.attrValue }}</a>
-                        </div>
+                        <span *ngFor="let attrValues of attr.attrValues; let last = last">
+                            <a class="form-control-static" [routerLink]="['/attr-value', attrValues?.id, 'view']">{{ attrValues.attrValue }}</a>{{ last ? '' : ', ' }}
+                        </span>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

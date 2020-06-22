@@ -13,6 +13,8 @@
         "attrValue": "Attr Value",
         "attr": "Attr",
         "spec": "Spec",
+        "type": "Type",
+        "sku": "Sku",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

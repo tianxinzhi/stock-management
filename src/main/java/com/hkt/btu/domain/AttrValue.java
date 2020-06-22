@@ -1,5 +1,6 @@
 package com.hkt.btu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A AttrValue.
@@ -33,6 +36,11 @@ public class AttrValue implements Serializable {
 
     @Column(name = "value_to")
     private String valueTo;
+
+    @ManyToMany(mappedBy = "attrValues")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Attr> attrs = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -93,6 +101,31 @@ public class AttrValue implements Serializable {
 
     public void setValueTo(String valueTo) {
         this.valueTo = valueTo;
+    }
+
+    public Set<Attr> getAttrs() {
+        return attrs;
+    }
+
+    public AttrValue attrs(Set<Attr> attrs) {
+        this.attrs = attrs;
+        return this;
+    }
+
+    public AttrValue addAttrs(Attr attr) {
+        this.attrs.add(attr);
+        attr.getAttrValues().add(this);
+        return this;
+    }
+
+    public AttrValue removeAttrs(Attr attr) {
+        this.attrs.remove(attr);
+        attr.getAttrValues().remove(this);
+        return this;
+    }
+
+    public void setAttrs(Set<Attr> attrs) {
+        this.attrs = attrs;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

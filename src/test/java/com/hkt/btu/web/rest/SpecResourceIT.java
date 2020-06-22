@@ -4,22 +4,32 @@ import com.hkt.btu.StockManagementApp;
 import com.hkt.btu.config.TestSecurityConfiguration;
 import com.hkt.btu.domain.Spec;
 import com.hkt.btu.repository.SpecRepository;
+import com.hkt.btu.service.SpecService;
+import com.hkt.btu.service.dto.SpecDTO;
+import com.hkt.btu.service.mapper.SpecMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -27,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link SpecResource} REST controller.
  */
 @SpringBootTest(classes = { StockManagementApp.class, TestSecurityConfiguration.class })
-
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 public class SpecResourceIT {
@@ -43,6 +53,18 @@ public class SpecResourceIT {
 
     @Autowired
     private SpecRepository specRepository;
+
+    @Mock
+    private SpecRepository specRepositoryMock;
+
+    @Autowired
+    private SpecMapper specMapper;
+
+    @Mock
+    private SpecService specServiceMock;
+
+    @Autowired
+    private SpecService specService;
 
     @Autowired
     private EntityManager em;
@@ -90,9 +112,10 @@ public class SpecResourceIT {
         int databaseSizeBeforeCreate = specRepository.findAll().size();
 
         // Create the Spec
+        SpecDTO specDTO = specMapper.toDto(spec);
         restSpecMockMvc.perform(post("/api/specs").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(spec)))
+            .content(TestUtil.convertObjectToJsonBytes(specDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Spec in the database
@@ -111,11 +134,12 @@ public class SpecResourceIT {
 
         // Create the Spec with an existing ID
         spec.setId(1L);
+        SpecDTO specDTO = specMapper.toDto(spec);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restSpecMockMvc.perform(post("/api/specs").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(spec)))
+            .content(TestUtil.convertObjectToJsonBytes(specDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Spec in the database
@@ -140,6 +164,26 @@ public class SpecResourceIT {
             .andExpect(jsonPath("$.[*].verId").value(hasItem(DEFAULT_VER_ID)));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllSpecsWithEagerRelationshipsIsEnabled() throws Exception {
+        when(specServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restSpecMockMvc.perform(get("/api/specs?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(specServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllSpecsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(specServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restSpecMockMvc.perform(get("/api/specs?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(specServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getSpec() throws Exception {
@@ -180,10 +224,11 @@ public class SpecResourceIT {
             .specName(UPDATED_SPEC_NAME)
             .specDesc(UPDATED_SPEC_DESC)
             .verId(UPDATED_VER_ID);
+        SpecDTO specDTO = specMapper.toDto(updatedSpec);
 
         restSpecMockMvc.perform(put("/api/specs").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(updatedSpec)))
+            .content(TestUtil.convertObjectToJsonBytes(specDTO)))
             .andExpect(status().isOk());
 
         // Validate the Spec in the database
@@ -201,11 +246,12 @@ public class SpecResourceIT {
         int databaseSizeBeforeUpdate = specRepository.findAll().size();
 
         // Create the Spec
+        SpecDTO specDTO = specMapper.toDto(spec);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restSpecMockMvc.perform(put("/api/specs").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(spec)))
+            .content(TestUtil.convertObjectToJsonBytes(specDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Spec in the database

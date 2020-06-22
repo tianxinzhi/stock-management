@@ -20,11 +20,11 @@
                 <dd>
                     <span>{{ spec.verId }}</span>
                 </dd>
-                <dt><span jhiTranslate="stockManagementApp.spec.attr">Attr</span></dt>
+                <dt><span jhiTranslate="stockManagementApp.spec.attrs">Attrs</span></dt>
                 <dd>
-                    <div *ngIf="spec.attr">
-                        <a [routerLink]="['/attr', spec.attr?.attrName, 'view']">{{ spec.attr?.attrName }}</a>
-                    </div>
+                    <span *ngFor="let attrs of spec.attrs; let last = last">
+                        <a [routerLink]="['/attr', attrs?.id, 'view']">{{ attrs.attrName }}</a>{{ last ? '' : ', ' }}
+                    </span>
                 </dd>
             </dl>
 

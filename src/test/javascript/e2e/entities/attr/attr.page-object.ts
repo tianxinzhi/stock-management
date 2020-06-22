@@ -32,7 +32,7 @@ export class AttrUpdatePage {
   attrNameInput = element(by.id('field_attrName'));
   attrDescInput = element(by.id('field_attrDesc'));
 
-  attrValueSelect = element(by.id('field_attrValue'));
+  attrValuesSelect = element(by.id('field_attrValues'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -54,23 +54,23 @@ export class AttrUpdatePage {
     return await this.attrDescInput.getAttribute('value');
   }
 
-  async attrValueSelectLastOption(): Promise<void> {
-    await this.attrValueSelect
+  async attrValuesSelectLastOption(): Promise<void> {
+    await this.attrValuesSelect
       .all(by.tagName('option'))
       .last()
       .click();
   }
 
-  async attrValueSelectOption(option: string): Promise<void> {
-    await this.attrValueSelect.sendKeys(option);
+  async attrValuesSelectOption(option: string): Promise<void> {
+    await this.attrValuesSelect.sendKeys(option);
   }
 
-  getAttrValueSelect(): ElementFinder {
-    return this.attrValueSelect;
+  getAttrValuesSelect(): ElementFinder {
+    return this.attrValuesSelect;
   }
 
-  async getAttrValueSelectedOption(): Promise<string> {
-    return await this.attrValueSelect.element(by.css('option:checked')).getText();
+  async getAttrValuesSelectedOption(): Promise<string> {
+    return await this.attrValuesSelect.element(by.css('option:checked')).getText();
   }
 
   async save(): Promise<void> {

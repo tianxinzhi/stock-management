@@ -4,6 +4,9 @@ import com.hkt.btu.StockManagementApp;
 import com.hkt.btu.config.TestSecurityConfiguration;
 import com.hkt.btu.domain.AttrValue;
 import com.hkt.btu.repository.AttrValueRepository;
+import com.hkt.btu.service.AttrValueService;
+import com.hkt.btu.service.dto.AttrValueDTO;
+import com.hkt.btu.service.mapper.AttrValueMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,6 +49,12 @@ public class AttrValueResourceIT {
 
     @Autowired
     private AttrValueRepository attrValueRepository;
+
+    @Autowired
+    private AttrValueMapper attrValueMapper;
+
+    @Autowired
+    private AttrValueService attrValueService;
 
     @Autowired
     private EntityManager em;
@@ -95,9 +104,10 @@ public class AttrValueResourceIT {
         int databaseSizeBeforeCreate = attrValueRepository.findAll().size();
 
         // Create the AttrValue
+        AttrValueDTO attrValueDTO = attrValueMapper.toDto(attrValue);
         restAttrValueMockMvc.perform(post("/api/attr-values").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(attrValue)))
+            .content(TestUtil.convertObjectToJsonBytes(attrValueDTO)))
             .andExpect(status().isCreated());
 
         // Validate the AttrValue in the database
@@ -117,11 +127,12 @@ public class AttrValueResourceIT {
 
         // Create the AttrValue with an existing ID
         attrValue.setId(1L);
+        AttrValueDTO attrValueDTO = attrValueMapper.toDto(attrValue);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAttrValueMockMvc.perform(post("/api/attr-values").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(attrValue)))
+            .content(TestUtil.convertObjectToJsonBytes(attrValueDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the AttrValue in the database
@@ -189,10 +200,11 @@ public class AttrValueResourceIT {
             .unitOfMeasure(UPDATED_UNIT_OF_MEASURE)
             .valueFrom(UPDATED_VALUE_FROM)
             .valueTo(UPDATED_VALUE_TO);
+        AttrValueDTO attrValueDTO = attrValueMapper.toDto(updatedAttrValue);
 
         restAttrValueMockMvc.perform(put("/api/attr-values").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(updatedAttrValue)))
+            .content(TestUtil.convertObjectToJsonBytes(attrValueDTO)))
             .andExpect(status().isOk());
 
         // Validate the AttrValue in the database
@@ -211,11 +223,12 @@ public class AttrValueResourceIT {
         int databaseSizeBeforeUpdate = attrValueRepository.findAll().size();
 
         // Create the AttrValue
+        AttrValueDTO attrValueDTO = attrValueMapper.toDto(attrValue);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restAttrValueMockMvc.perform(put("/api/attr-values").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(attrValue)))
+            .content(TestUtil.convertObjectToJsonBytes(attrValueDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the AttrValue in the database

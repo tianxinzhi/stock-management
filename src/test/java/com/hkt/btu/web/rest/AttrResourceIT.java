@@ -4,22 +4,32 @@ import com.hkt.btu.StockManagementApp;
 import com.hkt.btu.config.TestSecurityConfiguration;
 import com.hkt.btu.domain.Attr;
 import com.hkt.btu.repository.AttrRepository;
+import com.hkt.btu.service.AttrService;
+import com.hkt.btu.service.dto.AttrDTO;
+import com.hkt.btu.service.mapper.AttrMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -27,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link AttrResource} REST controller.
  */
 @SpringBootTest(classes = { StockManagementApp.class, TestSecurityConfiguration.class })
-
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 public class AttrResourceIT {
@@ -40,6 +50,18 @@ public class AttrResourceIT {
 
     @Autowired
     private AttrRepository attrRepository;
+
+    @Mock
+    private AttrRepository attrRepositoryMock;
+
+    @Autowired
+    private AttrMapper attrMapper;
+
+    @Mock
+    private AttrService attrServiceMock;
+
+    @Autowired
+    private AttrService attrService;
 
     @Autowired
     private EntityManager em;
@@ -85,9 +107,10 @@ public class AttrResourceIT {
         int databaseSizeBeforeCreate = attrRepository.findAll().size();
 
         // Create the Attr
+        AttrDTO attrDTO = attrMapper.toDto(attr);
         restAttrMockMvc.perform(post("/api/attrs").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(attr)))
+            .content(TestUtil.convertObjectToJsonBytes(attrDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Attr in the database
@@ -105,11 +128,12 @@ public class AttrResourceIT {
 
         // Create the Attr with an existing ID
         attr.setId(1L);
+        AttrDTO attrDTO = attrMapper.toDto(attr);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAttrMockMvc.perform(post("/api/attrs").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(attr)))
+            .content(TestUtil.convertObjectToJsonBytes(attrDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Attr in the database
@@ -133,6 +157,26 @@ public class AttrResourceIT {
             .andExpect(jsonPath("$.[*].attrDesc").value(hasItem(DEFAULT_ATTR_DESC)));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllAttrsWithEagerRelationshipsIsEnabled() throws Exception {
+        when(attrServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restAttrMockMvc.perform(get("/api/attrs?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(attrServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllAttrsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(attrServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restAttrMockMvc.perform(get("/api/attrs?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(attrServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getAttr() throws Exception {
@@ -171,10 +215,11 @@ public class AttrResourceIT {
         updatedAttr
             .attrName(UPDATED_ATTR_NAME)
             .attrDesc(UPDATED_ATTR_DESC);
+        AttrDTO attrDTO = attrMapper.toDto(updatedAttr);
 
         restAttrMockMvc.perform(put("/api/attrs").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(updatedAttr)))
+            .content(TestUtil.convertObjectToJsonBytes(attrDTO)))
             .andExpect(status().isOk());
 
         // Validate the Attr in the database
@@ -191,11 +236,12 @@ public class AttrResourceIT {
         int databaseSizeBeforeUpdate = attrRepository.findAll().size();
 
         // Create the Attr
+        AttrDTO attrDTO = attrMapper.toDto(attr);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restAttrMockMvc.perform(put("/api/attrs").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(attr)))
+            .content(TestUtil.convertObjectToJsonBytes(attrDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Attr in the database

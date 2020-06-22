@@ -43,8 +43,8 @@ describe('Spec e2e test', () => {
     await promise.all([
       specUpdatePage.setSpecNameInput('specName'),
       specUpdatePage.setSpecDescInput('specDesc'),
-      specUpdatePage.setVerIdInput('verId'),
-      specUpdatePage.attrSelectLastOption()
+      specUpdatePage.setVerIdInput('verId')
+      // specUpdatePage.attrsSelectLastOption(),
     ]);
 
     expect(await specUpdatePage.getSpecNameInput()).to.eq('specName', 'Expected SpecName value to be equals to specName');

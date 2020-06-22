@@ -1,0 +1,56 @@
+entity Type {
+	typeCode String
+	typeName String
+	sequential String
+	typeDesc String
+
+}
+
+entity Sku {
+	skuCode String
+	skuDesc String
+	skuName String
+	skuOrigin String
+	typeName String
+	//specId Long
+}
+entity AttrValue {
+    attrValue String
+    unitOfMeasure String
+    valueFrom String
+    valueTo String
+}
+
+
+
+entity Attr {
+	attrName String
+    attrDesc String
+    //attrValueId Long
+}
+
+entity Spec {
+	specName String
+    specDesc String
+    verId String
+    //attrId Long
+}
+
+
+relationship ManyToMany {
+	Attr{attrValues} to AttrValue{attrs}
+}
+
+relationship ManyToMany {
+	Spec{attrs} to Attr{specs}
+}
+relationship ManyToMany {
+	Type{specs} to Spec{types}
+}
+relationship ManyToMany {
+	Sku{types} to Type{skus}
+}
+
+dto * with mapstruct
+
+service all with serviceImpl

@@ -27,6 +27,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'spec',
         loadChildren: () => import('./spec/spec.module').then(m => m.StockManagementSpecModule)
+      },
+      {
+        path: 'type',
+        loadChildren: () => import('./type/type.module').then(m => m.StockManagementTypeModule)
+      },
+      {
+        path: 'sku',
+        loadChildren: () => import('./sku/sku.module').then(m => m.StockManagementSkuModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
